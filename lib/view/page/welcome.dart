@@ -1,6 +1,7 @@
 import 'package:bankuu_info_site/controller/layout.dart';
 import 'package:bankuu_info_site/utility.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
 
@@ -13,10 +14,10 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 80),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 80),
+          child: Stack(
+            alignment: Alignment.center,
             children: [
               ShaderMask(
                 blendMode: BlendMode.srcIn,
@@ -27,29 +28,40 @@ class WelcomePage extends StatelessWidget {
                   Rect.fromLTWH(0, 0, bounds.width, bounds.height),
                 ),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Text(
-                      "200 in 1 : Curriculum Vitae",
-                      style: TextStyle(fontSize: 50),
-                    ),
                     FittedBox(
-                      fit: BoxFit.fitWidth,
-                      child: Text("BANKUU", style: TextStyle(fontSize: 400, height: 0.75)),
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        "200 in 1 : Curriculum Vitae",
+                        style: TextStyle(fontSize: 40, height: 0.75),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text("BANKUU", style: TextStyle(fontSize: 350, height: 0.6)),
                     ),
                   ],
                 ),
               ),
-              Align(
-                alignment: Alignment.center,
-                child: Obx(
-                  () => Opacity(
-                    opacity: controller.textOpacity.value,
-                    child: Text(
-                      "Any key or click to enter... ",
-                      style: TextStyle(fontSize: 30, color: ColorSet.textEnd.color),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height / 2.25),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Obx(
+                      () => Opacity(
+                        opacity: controller.textOpacity.value,
+                        child: Text(
+                          "Any key or click to enter... ",
+                          style: TextStyle(fontSize: 30, color: ColorSet.textEnd.color),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
