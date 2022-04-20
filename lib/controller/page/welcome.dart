@@ -3,27 +3,23 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
 
-class HomeScreenControllerBinding implements Bindings {
+class WelcomeControllerBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(HomeScreenController._internal());
+    Get.put(WelcomeController._internal());
   }
 }
 
-class HomeScreenController extends GetxController {
+class WelcomeController extends GetxController {
   late Timer? _timer;
+
+  //region Welcome
   var textOpacity = 1.00.obs;
-  late _SpeedController welcomeFooter;
+  late _SpeedController welcomeFooter = _SpeedController('runner', speedMultiplier: 1);
   var isEntering = false.obs;
   var isToMainMenu = false.obs;
 
-  HomeScreenController._internal();
-
-  @override
-  void onInit() {
-    super.onInit();
-    welcomeFooter = _SpeedController('runner', speedMultiplier: 1);
-  }
+  WelcomeController._internal();
 
   onEnter() {
     if (isEntering.isTrue) {
@@ -31,8 +27,6 @@ class HomeScreenController extends GetxController {
     }
 
     isEntering.value = true;
-
-    // Flash Text
 
     _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       if (timer.tick % 3 == 0) {
@@ -44,7 +38,7 @@ class HomeScreenController extends GetxController {
       }
 
       if (welcomeFooter.speedMultiplier.value > 0.1 && isToMainMenu.isFalse) {
-        welcomeFooter.speedMultiplier.value = welcomeFooter.speedMultiplier.value - (welcomeFooter.speedMultiplier.value / 8);
+        welcomeFooter.speedMultiplier.value = welcomeFooter.speedMultiplier.value - (welcomeFooter.speedMultiplier.value / 3);
       } else {
         if (isToMainMenu.isFalse) {
           welcomeFooter.speedMultiplier.value = 0.01;
@@ -53,19 +47,20 @@ class HomeScreenController extends GetxController {
 
         if (welcomeFooter.speedMultiplier.value < 8) {
           welcomeFooter.speedMultiplier.value = welcomeFooter.speedMultiplier.value + 0.25;
+        } else {
+          Get.offNamed("/portfolio");
         }
       }
     });
-
-    // Create enter Animation
-    // welcomeFooter.changeSpeed(5);
   }
 
   @override
-  void dispose() {
+  void onClose() {
     _timer?.cancel();
-    super.dispose();
+    super.onClose();
   }
+//endregion Welcome
+
 }
 
 class _SpeedController extends SimpleAnimation {

@@ -1,19 +1,26 @@
-import 'package:bankuu_info_site/controller/layout.dart';
+import 'package:bankuu_info_site/controller/page/welcome.dart';
 import 'package:bankuu_info_site/utility.dart';
+import 'package:bankuu_info_site/view/share.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends GetView<WelcomeController> {
   final FocusNode _focusNode = FocusNode();
 
-  final HomeScreenController controller;
-
-  WelcomePage(this.controller, {Key? key}) : super(key: key);
+  WelcomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      child: Stack(children: [
+        _buildRawWelcomePage(context),
+        ShareView.buildButtonBar(context),
+      ]),
+    );
+  }
+
+  RawKeyboardListener _buildRawWelcomePage(BuildContext context) {
     return RawKeyboardListener(
       autofocus: true,
       onKey: (value) {
@@ -26,6 +33,7 @@ class WelcomePage extends StatelessWidget {
         },
         behavior: HitTestBehavior.opaque,
         child: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 80),
@@ -75,7 +83,7 @@ class WelcomePage extends StatelessWidget {
                           () => Opacity(
                             opacity: controller.textOpacity.value,
                             child: Text(
-                              controller.isEntering.isTrue ? "Please wait..." :"Any key or click to enter",
+                              controller.isEntering.isTrue ? "Please wait..." : "Any key or click to enter",
                               style: TextStyle(fontSize: 30, color: ColorSet.textEnd.color),
                             ),
                           ),
@@ -86,13 +94,18 @@ class WelcomePage extends StatelessWidget {
                 ],
               ),
             ),
-            rive.RiveAnimation.asset(
-              'asset/rive/welcome-footer.riv',
-              fit: BoxFit.fill,
-              controllers: [
-                controller.welcomeFooter,
-              ],
-            )
+            Obx(() => AnimatedContainer(
+                  height: controller.isToMainMenu.isFalse ? Get.height : 0,
+                  curve: Curves.easeInOut,
+                  duration: const Duration(seconds: 8),
+                  child: rive.RiveAnimation.asset(
+                    'asset/rive/welcome-footer.riv',
+                    fit: BoxFit.fill,
+                    controllers: [
+                      controller.welcomeFooter,
+                    ],
+                  ),
+                ))
           ],
         ),
       ),
