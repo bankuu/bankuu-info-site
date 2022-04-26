@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:bankuu_info_site/controller/page/portfolio.dart';
@@ -9,7 +10,6 @@ import 'package:bankuu_info_site/view/share.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class PortfolioPage extends GetView<PortfolioController> {
@@ -125,14 +125,14 @@ class PortfolioPage extends GetView<PortfolioController> {
                 () => Expanded(
                   child: Container(
                     color: ColorSet.background.color,
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 500),
+                    child: Container(
+                      // duration: const Duration(milliseconds: 500),
                       margin: EdgeInsets.all(30 * (2 - tween)),
                       decoration: BoxDecoration(
                         border: Border.all(color: controller.selectedMenu?.color ?? ColorSet.background.color, width: 3),
                         color: controller.selectedMenu?.color.withAlpha(10) ?? Colors.transparent,
                       ),
-                      child: _buildMenuPage(),
+                      child: _buildMenuPage(context),
                     ),
                   ),
                 ),
@@ -144,11 +144,12 @@ class PortfolioPage extends GetView<PortfolioController> {
     );
   }
 
-  Widget _buildMenuPage() {
+  Widget _buildMenuPage(BuildContext context) {
     switch (controller.selectedMenu) {
       case Menu.about:
-        return _buildAboutPage();
+        return _buildAboutPage(context);
       case Menu.skills:
+        return _buildSkillPage();
       case Menu.experience:
       case Menu.anythingElse:
       case Menu.contact:
@@ -157,7 +158,7 @@ class PortfolioPage extends GetView<PortfolioController> {
     }
   }
 
-  Widget _buildAboutPage() {
+  Widget _buildAboutPage(BuildContext context) {
     var textStyle = const TextStyle(color: Colors.white, fontFamily: 'RobotoMono');
     return Container(
       margin: const EdgeInsets.all(10),
@@ -200,104 +201,204 @@ class PortfolioPage extends GetView<PortfolioController> {
               )
             ],
           ),
-          const SizedBox(height: 50),
+          // const SizedBox(height: 50),
+          const Spacer(),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Text(
+            height: MediaQuery.of(context).size.height / 5,
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: AutoSizeText(
               "           Over 8 years in software development, overseeing all aspects of the software development life cycle, from analysis mockup through implementation, deployment, and troubleshooting, I created a platform for iot to control washer machines in 600+ laundromats all over the country and built 3+ mobile applications in-store with over 10k+ active users.",
-              style: textStyle.copyWith(fontSize: 18),
+              style: textStyle.copyWith(fontSize: 35),
             ),
           ),
-          const SizedBox(height: 50),
+          // const SizedBox(height: 50),
+          const Spacer(),
           Expanded(
-            child: Center(
-              child: ShaderMask(
-                blendMode: BlendMode.srcIn,
-                shaderCallback: (bounds) => LinearGradient(colors: [
-                  ColorSet.textBegin.color,
-                  ColorSet.textEnd.color,
-                ]).createShader(
-                  Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-                ),
-                child: AnimatedTextKit(
-                  animatedTexts: [
-                    ...[
-                      'Hello world',
-                      'My name is bankuu',
-                      'I\'m Programmer',
-                      '',
-                    ].map((thing) {
-                      return TyperAnimatedText(
-                        thing,
-                        textStyle: const TextStyle(fontSize: 55.0, fontWeight: FontWeight.bold, color: Colors.white, height: 1),
-                        speed: const Duration(milliseconds: 100),
-                      );
-                    }),
-                  ],
-                  pause: const Duration(milliseconds: 1000),
-                  repeatForever: true,
-                ),
-              ),
+            flex: 2,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () async {
+                        await launchUrlString("https://github.com/bankuu");
+                      },
+                      child: Row(
+                        children: [
+                          const Icon(
+                            FontAwesome.github,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                          const SizedBox(width: 10),
+                          Text("bankuu", style: textStyle.copyWith(fontSize: 20)),
+                        ],
+                      ),
+                    )),
+                MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () async {
+                        await launchUrlString("https://www.instagram.com/bankuu.gorutan");
+                      },
+                      child: Row(
+                        children: [
+                          const Icon(
+                            FontAwesome.instagram,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                          const SizedBox(width: 10),
+                          Text("bankuu.gorutan", style: textStyle.copyWith(fontSize: 20)),
+                        ],
+                      ),
+                    )),
+                MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () async {
+                        await launchUrlString("https://www.leetcode.com/bankuu");
+                      },
+                      child: Row(
+                        children: [
+                          Text("LeetCode", style: textStyle.copyWith(fontSize: 20)),
+                          const SizedBox(width: 10),
+                          Text("bankuu", style: textStyle.copyWith(fontSize: 20)),
+                        ],
+                      ),
+                    )),
+              ],
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () async {
-                      await launchUrlString("https://github.com/bankuu");
-                    },
-                    child: Row(
-                      children: [
-                        const Icon(
-                          FontAwesome.github,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        Text("bankuu", style: textStyle.copyWith(fontSize: 20)),
-                      ],
-                    ),
-                  )),
-              MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () async {
-                      await launchUrlString("https://www.instagram.com/bankuu.gorutan");
-                    },
-                    child: Row(
-                      children: [
-                        const Icon(
-                          FontAwesome.instagram,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                        const SizedBox(width: 10),
-                        Text("bankuu.gorutan", style: textStyle.copyWith(fontSize: 20)),
-                      ],
-                    ),
-                  )),
-              MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () async {
-                      await launchUrlString("https://www.leetcode.com/bankuu");
-                    },
-                    child: Row(
-                      children: [
-                        Text("LeetCode", style: textStyle.copyWith(fontSize: 20)),
-                        const SizedBox(width: 10),
-                        Text("bankuu", style: textStyle.copyWith(fontSize: 20)),
-                      ],
-                    ),
-                  )),
-            ],
-          ),
+          )
         ],
       ),
+    );
+  }
+
+  Widget _buildSkillPage() {
+    var textStyle = const TextStyle(fontFamily: 'RobotoMono', color: Colors.white);
+    return Column(
+      children: [
+        Container(
+          alignment: Alignment.bottomCenter,
+          child: ShaderMask(
+            blendMode: BlendMode.srcIn,
+            shaderCallback: (bounds) => LinearGradient(colors: [
+              ColorSet.textBegin.color,
+              ColorSet.textEnd.color,
+            ]).createShader(
+              Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+            ),
+            child: const Text("FullStack Developer", style: TextStyle(fontSize: 75, height: 1)),
+          ),
+        ),
+        Container(
+          height: 3,
+          color: controller.selectedMenu?.color ?? ColorSet.background.color,
+        ),
+        const Spacer(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(Icons.devices_other, color: Color(0xFFE98AEF)),
+            SizedBox(width: 10),
+            Text("Front-end", style: TextStyle(color: Color(0xFFE98AEF), fontSize: 45)),
+            SizedBox(width: 10),
+            Icon(Icons.web, color: Color(0xFFE98AEF)),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                "Language & Markup",
+                style: TextStyle(color: Color(0xFFE98AEF), fontSize: 25),
+              ),
+              Text(
+                "JS, TS, CSS\nDart, Kotlin, Swift\nHTML, Markdown",
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(fontSize: 15),
+              ),
+            ]),
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                "Framework & Core Library",
+                style: TextStyle(color: Color(0xFFE98AEF), fontSize: 25),
+              ),
+              Text(
+                "Angular, Nuxt.js, Svelte\nFlutter, Mobile native\nTailwind, D3.js",
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(fontSize: 15),
+              ),
+            ]),
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                "Principle & Technique",
+                style: TextStyle(color: Color(0xFFE98AEF), fontSize: 25),
+              ),
+              Text(
+                "MV[C,P,VM], JAMStack\nReactive programming\nClean architecture",
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(fontSize: 15),
+              ),
+            ]),
+          ],
+        ),
+        const Spacer(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(Icons.code, color: Color(0xFF8A94EF)),
+            SizedBox(width: 10),
+            Text("Back-end", style: TextStyle(color: Color(0xFF8A94EF), fontSize: 45)),
+            SizedBox(width: 10),
+            Icon(Icons.work_outline, color: Color(0xFF8A94EF)),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                "Language & Markup",
+                style: TextStyle(color: Color(0xFF8A94EF), fontSize: 25),
+              ),
+              Text(
+                "JS, TS, CSS\nDart, Kotlin, Swift\nHTML, Markdown",
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(fontSize: 15),
+              ),
+            ]),
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                "Framework & Library",
+                style: TextStyle(color: Color(0xFF8A94EF), fontSize: 25),
+              ),
+              Text(
+                "Angular, Nuxt.js, Svelte\nFlutter, Mobile native\njQuery, Tailwind.css, D3.js, Lodash",
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(fontSize: 15),
+              ),
+            ]),
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                "Principles, Pattern & Techniques",
+                style: TextStyle(color: Color(0xFFE98AEF), fontSize: 25),
+              ),
+              Text(
+                "MVC, MVP, MVVM, JAMStack\nReactive programming\nClean architecture",
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(fontSize: 15),
+              ),
+            ]),
+          ],
+        ),
+        Spacer(),
+
+      ],
     );
   }
 }

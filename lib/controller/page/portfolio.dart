@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import "dart:html" as html;
 
 enum Menu { about, skills, experience, anythingElse, contact }
 
@@ -13,7 +14,7 @@ extension MenuExtension on Menu {
       case Menu.experience:
         return "Experience";
       case Menu.anythingElse:
-        return "Anything Else";
+        return "Anything-Else";
       case Menu.contact:
         return "Contact";
     }
@@ -53,12 +54,18 @@ class PortfolioController extends GetxController {
   onReady() {
     Future.delayed(const Duration(milliseconds: 1000), () {
       if (selectedMenu == null) {
-        selectMenu(Menu.about);
+        if (Get.parameters.containsKey("menu")) {
+          var menu = Menu.values.singleWhere((element) => element.name.toLowerCase() == Get.parameters["menu"]?.toLowerCase(), orElse: () => Menu.about);
+          selectMenu(menu);
+        } else {
+          selectMenu(Menu.about);
+        }
       }
     });
   }
 
   selectMenu(Menu menu) {
     _selectedMenu.value = menu;
+    html.window.history.pushState(null, 'portfolio', '/portfolio?menu=${menu.name.toLowerCase()}');
   }
 }
