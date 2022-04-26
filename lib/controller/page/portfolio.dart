@@ -49,6 +49,14 @@ class PortfolioController extends GetxController {
 
   PortfolioController._internal();
 
+  @override
+  onReady() {
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      if (selectedMenu == null) {
+        selectMenu(Menu.about);
+      }
+    });
+  }
 
   selectMenu(Menu menu) {
     _selectedMenu.value = menu;

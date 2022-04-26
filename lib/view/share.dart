@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ShareView {
   static Widget buildButtonBar(BuildContext context) {
-    final String url = Uri(scheme: 'mailto', path: 'ban.kuu@yahoo.com', query: 'subject=Contact to  バンクー').toString();
+    final Uri url = Uri(scheme: 'mailto', path: 'ban.kuu@yahoo.com', query: 'subject=Contact to  バンクー');
     return Container(
       alignment: Alignment.bottomCenter,
       child: ShaderMask(
@@ -25,8 +25,8 @@ class ShareView {
               style: const TextStyle(fontSize: 20),
               recognizer: TapGestureRecognizer()
                 ..onTap = () async {
-                  if (await canLaunch(url)) {
-                    await launch(url);
+                  if (await canLaunchUrl(url)) {
+                    await launchUrl(url);
                   }
                 },
             ),
