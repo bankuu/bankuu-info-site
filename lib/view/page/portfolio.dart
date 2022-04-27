@@ -184,6 +184,10 @@ class PortfolioPage extends GetView<PortfolioController> {
                   const SizedBox(height: 5),
                   Text("🎂  10 April 1990", style: textStyle.copyWith(fontSize: 18)),
                   const SizedBox(height: 5),
+                  Text("🎓  Bachelor Computer Engineering", style: textStyle.copyWith(fontSize: 18)),
+                  const SizedBox(height: 5),
+                  Text("🏫  Dhurakij Pundit University", style: textStyle.copyWith(fontSize: 18)),
+                  const SizedBox(height: 5),
                 ],
               ),
               const SizedBox(width: 20),
@@ -516,30 +520,180 @@ class PortfolioPage extends GetView<PortfolioController> {
         _buildExperiencePageBigheadPageItem(pageController),
         _buildExperiencePageTDEVPageItem(pageController),
         _buildExperiencePageFreelancePageItem(pageController),
-        _buildExperiencePageGoRuTANPageItem(pageController),
+        // _buildExperiencePageGoRuTANPageItem(pageController),
       ],
     );
   }
 
   Widget _buildExperiencePageNysiisPageItem(PageController pageController) {
-    return Column(children: [
-      const Spacer(),
-      _buildExperiencePageButtonBar(pageController,
-          title: ".NET Developer | Nysiis Solutions Co., Ltd.",
-          subtitle: "February 2012 - January 2014",
-          colorList: [
-            Colors.blue,
-            Colors.yellow,
-            Colors.deepOrange,
-          ],
-          isHideBack: true,
-          assetImage: "asset/image/nysiis-logo.png"),
-    ]);
+    var textStyle = TextStyle(fontFamily: 'RobotoMono', color: Colors.grey.shade100);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 150,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Spacer(),
+                      Image.asset(
+                        "asset/image/nysiis/nysiis-doa-logo.png",
+                        fit: BoxFit.fitHeight,
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AutoSizeText(
+                            "NSW Project - Department of Agriculture",
+                            style: textStyle.copyWith(
+                              fontSize: 22,
+                            ),
+                            maxLines: 1,
+                          ),
+                          SizedBox(
+                            height: 100,
+                            child: AutoSizeText.rich(
+                              const TextSpan(children: [
+                                TextSpan(text: " - Develop Web Application (ASP.NET) of Customer in e-Documentary Request System\n"),
+                                TextSpan(text: " - Develop Application (WinForm) of Administrator in e-Documentary Approval System\n"),
+                                TextSpan(text: " - Develop Service Layer to WebService (SOAP)"),
+                              ]),
+                              style: textStyle.copyWith(fontSize: 16),
+                              minFontSize: 0,
+                              stepGranularity: 0.1,
+                            ),
+                          ),
+                        ],
+                      ),),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 150,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "asset/image/nysiis/nysiis-ecs-logo.png",
+                        fit: BoxFit.fitHeight,
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AutoSizeText(
+                              "Internal ERP System - ECS",
+                              style: textStyle.copyWith(
+                                fontSize: 22,
+                              ),
+                              maxLines: 1,
+                            ),
+                            SizedBox(
+                              height: 100,
+                              child: AutoSizeText.rich(
+                                const TextSpan(children: [
+                                  TextSpan(text: " - Fixbug & Troubleshoot ERP Application (ASP.NET) of Internal System\n"),
+                                  TextSpan(text: " - Support & Test Step on ERP Application\n"),
+                                ]),
+                                style: textStyle.copyWith(fontSize: 16),
+                                minFontSize: 0,
+                                stepGranularity: 0.1,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        _buildExperiencePageButtonBar(pageController,
+            title: ".NET Developer | Nysiis Solutions Co., Ltd.",
+            subtitle: "February 2012 - January 2014",
+            colorList: [
+              Colors.blue,
+              Colors.yellow,
+              Colors.deepOrange,
+            ],
+            isHideBack: true,
+            assetImage: "asset/image/nysiis-logo.png"),
+      ],
+    );
   }
 
   Widget _buildExperiencePageUIHPageItem(PageController pageController) {
+    var textStyle = const TextStyle(fontFamily: 'RobotoMono', color: Colors.white);
     return Column(children: [
-      const Spacer(),
+      Expanded(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 150,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "asset/image/nysiis/nysiis-doa-logo.png",
+                      fit: BoxFit.fitHeight,
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AutoSizeText(
+                            "NSW Project - Department of Agriculture",
+                            style: textStyle.copyWith(
+                              fontSize: 22,
+                            ),
+                            maxLines: 1,
+                          ),
+                          SizedBox(
+                            height: 100,
+                            child: AutoSizeText.rich(
+                              const TextSpan(children: [
+                                TextSpan(text: " - Develop Web Application (ASP.NET) of Customer in e-Documentary Request System\n"),
+                                TextSpan(text: " - Develop Application (WinForm) of Administrator in e-Documentary Approval System\n"),
+                                TextSpan(text: " - Develop Service Layer to WebService (SOAP)"),
+                              ]),
+                              style: textStyle.copyWith(fontSize: 16),
+                              minFontSize: 0,
+                              stepGranularity: 0.1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
       _buildExperiencePageButtonBar(pageController,
           title: ".NET Developer | UIH Co., Ltd.",
           subtitle: "April 2014 - April 2015",
@@ -590,9 +744,9 @@ class PortfolioPage extends GetView<PortfolioController> {
         title: "Co-Founder, R&D Initiator | T-DEV Co., Ltd.",
         subtitle: "August 2018 - May 2022",
         colorList: [
-          Colors.red,
-          Colors.green,
+          Colors.lightBlueAccent,
           Colors.blue,
+          Colors.lightBlueAccent,
         ],
         assetImage: "asset/image/tdev-logo.png",
       ),
@@ -602,34 +756,31 @@ class PortfolioPage extends GetView<PortfolioController> {
   Widget _buildExperiencePageFreelancePageItem(PageController pageController) {
     return Column(children: [
       const Spacer(),
-      _buildExperiencePageButtonBar(
-        pageController,
-        title: "Freelance Coder",
-        subtitle: "2018 - NOW",
-        colorList: [
-          Colors.red,
-          Colors.green,
-          Colors.blue,
-        ],
-      ),
+      _buildExperiencePageButtonBar(pageController,
+          title: "Freelance Coder",
+          subtitle: "2018 - NOW",
+          colorList: [
+            Colors.red,
+            Colors.green,
+            Colors.blue,
+          ],
+          isHideNext: true),
     ]);
   }
 
   Widget _buildExperiencePageGoRuTANPageItem(PageController pageController) {
     return Column(children: [
       const Spacer(),
-      _buildExperiencePageButtonBar(
-        pageController,
-        title: "Middle Brother, Tech Support Unit | GoRUTAN",
-        subtitle: "10 April 1990 - FOREVER",
-        colorList: [
-          Colors.yellow,
-          Colors.orange,
-          Colors.yellow,
-        ],
-        assetImage: "asset/image/gorutan-logo.png",
-        isHideNext: true
-      ),
+      _buildExperiencePageButtonBar(pageController,
+          title: "Middle Brother, Tech Support Unit | GoRUTAN",
+          subtitle: "10 April 1990 - FOREVER",
+          colorList: [
+            Colors.yellow,
+            Colors.orange,
+            Colors.yellow,
+          ],
+          assetImage: "asset/image/gorutan-logo.png",
+          isHideNext: true),
     ]);
   }
 
@@ -667,18 +818,29 @@ class PortfolioPage extends GetView<PortfolioController> {
           else
             const SizedBox(width: 40),
           if (assetImage != null) Image.asset(assetImage, fit: BoxFit.fitHeight),
-          Container(
-            alignment: Alignment.bottomCenter,
+          Expanded(
             child: ShaderMask(
               blendMode: BlendMode.srcIn,
               shaderCallback: (bounds) => LinearGradient(colors: colorList).createShader(
                 Rect.fromLTWH(0, 0, bounds.width, bounds.height),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(title, style: const TextStyle(fontSize: 40, height: 0.8)),
-                  Text(subtitle, style: const TextStyle(fontSize: 20, height: 0.6)),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: AutoSizeText(
+                        title,
+                        style: const TextStyle(fontSize: 40, height: 0.8),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: AutoSizeText(
+                      subtitle,
+                      style: const TextStyle(fontSize: 30, height: 0.8),
+                    ),
+                  ),
                 ],
               ),
             ),
