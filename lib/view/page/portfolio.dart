@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/painting.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:bankuu_info_site/controller/page/portfolio.dart';
 import 'package:bankuu_info_site/utility.dart';
@@ -151,6 +153,7 @@ class PortfolioPage extends GetView<PortfolioController> {
       case Menu.skills:
         return _buildSkillPage();
       case Menu.experience:
+        return _buildExperiencePage(context);
       case Menu.anythingElse:
       case Menu.contact:
       default:
@@ -499,6 +502,207 @@ class PortfolioPage extends GetView<PortfolioController> {
         ),
         const Spacer(),
       ],
+    );
+  }
+
+  Widget _buildExperiencePage(BuildContext context) {
+    var pageController = PageController();
+    return PageView(
+      controller: pageController,
+      children: [
+        _buildExperiencePageNysiisPageItem(pageController),
+        _buildExperiencePageUIHPageItem(pageController),
+        _buildExperiencePagePinpertyPageItem(pageController),
+        _buildExperiencePageBigheadPageItem(pageController),
+        _buildExperiencePageTDEVPageItem(pageController),
+        _buildExperiencePageFreelancePageItem(pageController),
+        _buildExperiencePageGoRuTANPageItem(pageController),
+      ],
+    );
+  }
+
+  Widget _buildExperiencePageNysiisPageItem(PageController pageController) {
+    return Column(children: [
+      const Spacer(),
+      _buildExperiencePageButtonBar(pageController,
+          title: ".NET Developer | Nysiis Solutions Co., Ltd.",
+          subtitle: "February 2012 - January 2014",
+          colorList: [
+            Colors.blue,
+            Colors.yellow,
+            Colors.deepOrange,
+          ],
+          isHideBack: true,
+          assetImage: "asset/image/nysiis-logo.png"),
+    ]);
+  }
+
+  Widget _buildExperiencePageUIHPageItem(PageController pageController) {
+    return Column(children: [
+      const Spacer(),
+      _buildExperiencePageButtonBar(pageController,
+          title: ".NET Developer | UIH Co., Ltd.",
+          subtitle: "April 2014 - April 2015",
+          colorList: [
+            Colors.green,
+            Colors.greenAccent,
+            Colors.green,
+          ],
+          assetImage: "asset/image/uih-logo.png"),
+    ]);
+  }
+
+  Widget _buildExperiencePagePinpertyPageItem(PageController pageController) {
+    return Column(children: [
+      const Spacer(),
+      _buildExperiencePageButtonBar(pageController,
+          title: "System Engineer | Pinperty Co., Ltd.",
+          subtitle: "April 2015 - April 2016",
+          colorList: [
+            Colors.lightBlue,
+            Colors.lightBlue,
+            Colors.deepOrange,
+          ],
+          assetImage: "asset/image/pinperty-logo.png"),
+    ]);
+  }
+
+  Widget _buildExperiencePageBigheadPageItem(PageController pageController) {
+    return Column(children: [
+      const Spacer(),
+      _buildExperiencePageButtonBar(pageController,
+          title: "Senior Fullstack Developer | Bighead Co., Ltd.",
+          subtitle: "June 2016 - February 2018",
+          colorList: [
+            Colors.redAccent,
+            Colors.pink,
+            Colors.redAccent,
+          ],
+          assetImage: "asset/image/bighead-logo.png"),
+    ]);
+  }
+
+  Widget _buildExperiencePageTDEVPageItem(PageController pageController) {
+    return Column(children: [
+      const Spacer(),
+      _buildExperiencePageButtonBar(
+        pageController,
+        title: "Co-Founder, R&D Initiator | T-DEV Co., Ltd.",
+        subtitle: "August 2018 - May 2022",
+        colorList: [
+          Colors.red,
+          Colors.green,
+          Colors.blue,
+        ],
+        assetImage: "asset/image/tdev-logo.png",
+      ),
+    ]);
+  }
+
+  Widget _buildExperiencePageFreelancePageItem(PageController pageController) {
+    return Column(children: [
+      const Spacer(),
+      _buildExperiencePageButtonBar(
+        pageController,
+        title: "Freelance Coder",
+        subtitle: "2018 - NOW",
+        colorList: [
+          Colors.red,
+          Colors.green,
+          Colors.blue,
+        ],
+      ),
+    ]);
+  }
+
+  Widget _buildExperiencePageGoRuTANPageItem(PageController pageController) {
+    return Column(children: [
+      const Spacer(),
+      _buildExperiencePageButtonBar(
+        pageController,
+        title: "Middle Brother, Tech Support Unit | GoRUTAN",
+        subtitle: "10 April 1990 - FOREVER",
+        colorList: [
+          Colors.yellow,
+          Colors.orange,
+          Colors.yellow,
+        ],
+        assetImage: "asset/image/gorutan-logo.png",
+        isHideNext: true
+      ),
+    ]);
+  }
+
+  Widget _buildExperiencePageButtonBar(
+    PageController pageController, {
+    required String title,
+    required String subtitle,
+    required List<Color> colorList,
+    String? assetImage,
+    bool isHideBack = false,
+    bool isHideNext = false,
+  }) {
+    return SizedBox(
+      height: 100,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          if (!isHideBack)
+            SizedBox(
+              width: 40,
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTapDown: (_) {
+                    pageController.previousPage(
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                  child: Icon(Icons.arrow_back_ios_sharp, color: colorList.first, size: 30),
+                ),
+              ),
+            )
+          else
+            const SizedBox(width: 40),
+          if (assetImage != null) Image.asset(assetImage, fit: BoxFit.fitHeight),
+          Container(
+            alignment: Alignment.bottomCenter,
+            child: ShaderMask(
+              blendMode: BlendMode.srcIn,
+              shaderCallback: (bounds) => LinearGradient(colors: colorList).createShader(
+                Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(title, style: const TextStyle(fontSize: 40, height: 0.8)),
+                  Text(subtitle, style: const TextStyle(fontSize: 20, height: 0.6)),
+                ],
+              ),
+            ),
+          ),
+          if (!isHideNext)
+            SizedBox(
+                width: 40,
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTapDown: (_) {
+                      pageController.nextPage(
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                    child: Icon(Icons.arrow_forward_ios_sharp, color: colorList.last, size: 30),
+                  ),
+                ))
+          else
+            const SizedBox(width: 40),
+        ]),
+      ),
     );
   }
 }
