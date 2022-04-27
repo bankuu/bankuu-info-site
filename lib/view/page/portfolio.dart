@@ -304,7 +304,7 @@ class PortfolioPage extends GetView<PortfolioController> {
           children: const [
             Icon(Icons.devices_other, color: Color(0xFFE98AEF)),
             SizedBox(width: 10),
-            Text("Front-end", style: TextStyle(color: Color(0xFFE98AEF), fontSize: 45)),
+            Text("Frontend", style: TextStyle(color: Color(0xFFE98AEF), fontSize: 45)),
             SizedBox(width: 10),
             Icon(Icons.web, color: Color(0xFFE98AEF)),
           ],
@@ -318,7 +318,9 @@ class PortfolioPage extends GetView<PortfolioController> {
                 style: TextStyle(color: Color(0xFFE98AEF), fontSize: 25),
               ),
               Text(
-                "JS, TS, CSS\nDart, Kotlin, Swift\nHTML, Markdown",
+                "Dart, TS, JS\n"
+                "Kotlin, Swift, CSS\n"
+                "HTML, Markdown",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -329,7 +331,9 @@ class PortfolioPage extends GetView<PortfolioController> {
                 style: TextStyle(color: Color(0xFFE98AEF), fontSize: 25),
               ),
               Text(
-                "Angular, Nuxt.js, Svelte\nFlutter, Mobile native\nTailwind, D3.js",
+                "Flutter, Angular, Nuxt.js\n"
+                "Svelte, Mobile Native\n"
+                "Tailwind, D3.js",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -340,7 +344,9 @@ class PortfolioPage extends GetView<PortfolioController> {
                 style: TextStyle(color: Color(0xFFE98AEF), fontSize: 25),
               ),
               Text(
-                "MV[C,P,VM], JAMStack\nReactive programming\nClean architecture",
+                "Reactive Programming\n"
+                "Clean Architecture\n"
+                "MV[C/P/VM], JAMStack",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -353,7 +359,7 @@ class PortfolioPage extends GetView<PortfolioController> {
           children: const [
             Icon(Icons.code, color: Color(0xFF8A94EF)),
             SizedBox(width: 10),
-            Text("Back-end", style: TextStyle(color: Color(0xFF8A94EF), fontSize: 45)),
+            Text("Backend", style: TextStyle(color: Color(0xFF8A94EF), fontSize: 45)),
             SizedBox(width: 10),
             Icon(Icons.work_outline, color: Color(0xFF8A94EF)),
           ],
@@ -367,37 +373,131 @@ class PortfolioPage extends GetView<PortfolioController> {
                 style: TextStyle(color: Color(0xFF8A94EF), fontSize: 25),
               ),
               Text(
-                "JS, TS, CSS\nDart, Kotlin, Swift\nHTML, Markdown",
+                "Golang, Python\n"
+                "C#, Java, JS\n"
+                "JSON, XML, YAML, Protobuf",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
             ]),
             Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               const Text(
-                "Framework & Library",
+                "Framework & Core Library",
                 style: TextStyle(color: Color(0xFF8A94EF), fontSize: 25),
               ),
               Text(
-                "Angular, Nuxt.js, Svelte\nFlutter, Mobile native\njQuery, Tailwind.css, D3.js, Lodash",
+                "Echo, Gofiber, Django+DRF\n"
+                ".NET, FastAPI, Falcon\n"
+                "GORM, SQLAlchemy, EF.NET\n"
+                "Asynq, Celery\n"
+                "OpenFaaS, Cloudflare Worker",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
             ]),
             Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               const Text(
-                "Principles, Pattern & Techniques",
-                style: TextStyle(color: Color(0xFFE98AEF), fontSize: 25),
+                "Storage Management",
+                style: TextStyle(color: Color(0xFF8A94EF), fontSize: 25),
               ),
               Text(
-                "MVC, MVP, MVVM, JAMStack\nReactive programming\nClean architecture",
+                "RDBMS, TSDB, NoSQL\n"
+                "Redis, Memcache\n"
+                "Strapi, Directus, NocoDB",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
             ]),
           ],
         ),
-        Spacer(),
-
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                "Theory & Principle",
+                style: TextStyle(color: Color(0xFF8A94EF), fontSize: 25),
+              ),
+              Text(
+                "Data Structure & Algorithm\n"
+                "OOP + Design Pattern, N-Tier\n"
+                "Clean Architecture",
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(fontSize: 15),
+              ),
+            ]),
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                "Technique & Strategy",
+                style: TextStyle(color: Color(0xFF8A94EF), fontSize: 25),
+              ),
+              Text(
+                "ORM, Multi-Processing\n"
+                "Caching, Message Queue",
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(fontSize: 15),
+              ),
+            ]),
+          ],
+        ),
+        const Spacer(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(Icons.control_camera, color: Color(0xFF8AEFC0)),
+            SizedBox(width: 10),
+            Text("Operations", style: TextStyle(color: Color(0xFF8AEFC0), fontSize: 45)),
+            SizedBox(width: 10),
+            Icon(Icons.cloud_queue, color: Color(0xFF8AEFC0)),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                "System Operation",
+                style: TextStyle(color: Color(0xFF8AEFC0), fontSize: 25),
+              ),
+              Text(
+                "UNIX & Linux Kernel\n"
+                "VMware ESXi, Hyper-V, Docker\n"
+                "Nginx, IIS, Gunicorn, Traefik",
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(fontSize: 15),
+              ),
+            ]),
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                "Cloud Operation",
+                style: TextStyle(color: Color(0xFF8AEFC0), fontSize: 25),
+              ),
+              Text(
+                "AWS, DigitalOcean, Cloudflare\n"
+                "EC2, EKS, RDS, S3\n"
+                "Droplet, Space\n"
+                "Page, Worker & KV",
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(fontSize: 15),
+              ),
+            ]),
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                "Others",
+                style: TextStyle(color: Color(0xFF8AEFC0), fontSize: 25),
+              ),
+              Text(
+                "SSH, FTP, RPC\n"
+                "TeamCity, Github CI\n"
+                "Monday, Taskade",
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(fontSize: 15),
+              ),
+            ]),
+          ],
+        ),
+        const Spacer(),
       ],
     );
   }
