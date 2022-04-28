@@ -541,7 +541,7 @@ class PortfolioPage extends GetView<PortfolioController> {
               children: [
                 SizedBox(
                   height: 150,
-                  width: 700,
+                  width: 580,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -588,7 +588,7 @@ class PortfolioPage extends GetView<PortfolioController> {
                 ),
                 SizedBox(
                   height: 150,
-                  width: 700,
+                  width: 580,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -615,7 +615,7 @@ class PortfolioPage extends GetView<PortfolioController> {
                               height: 100,
                               child: AutoSizeText.rich(
                                 const TextSpan(children: [
-                                  TextSpan(text: " - Fixbug & Troubleshoot ERP Application of Internal System\n"),
+                                  TextSpan(text: " - Troubleshoot ERP Application of Internal System\n"),
                                   TextSpan(text: " - Support & Test Step on ERP Application\n"),
                                 ]),
                                 style: textStyle.copyWith(fontSize: 16),
@@ -1224,7 +1224,7 @@ class PortfolioPage extends GetView<PortfolioController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children:  [
             SelectableText("EMAIL : ban.kuu@yahoo.com", style: textStyle),
-            SelectableText("PHONE : (+66) 95-525-1704", style: textStyle),
+            SelectableText("PHONE : (+66) 95-925-1704", style: textStyle),
             SelectableText("LINKEDIN : linkedin.com/in/bankuu", style: textStyle),
           ],
         ),
