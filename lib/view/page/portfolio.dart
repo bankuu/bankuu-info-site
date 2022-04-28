@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:bankuu_info_site/controller/page/portfolio.dart';
 import 'package:bankuu_info_site/utility.dart';
@@ -52,18 +53,32 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  FittedBox(
+                children: [
+                  const FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text("BANKUU", style: TextStyle(fontSize: 100, height: 0.6)),
                   ),
-                  FittedBox(
+                  const FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text("Please scale up layout!!", style: TextStyle(fontSize: 50, height: 0.6)),
                   ),
-                  FittedBox(
+                  const FittedBox(
                     fit: BoxFit.scaleDown,
-                    child: Text("Mobile Display in coming soon..", style: TextStyle(fontSize: 50, height: 0.6)),
+                    child: Text("Support Mobile Display in coming soon..", style: TextStyle(fontSize: 50, height: 0.6)),
+                  ),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () async {
+                        await launchUrlString("https://resume.bankuu.info");
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text("Click to read Resume", style: TextStyle(fontSize: 50)),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -226,8 +241,8 @@ class PortfolioPage extends GetView<PortfolioController> {
                       maxHeight: 220,
                       maxWidth: 220,
                     ),
-                    child: Image.asset(
-                      "asset/image/about-me.jpeg",
+                    child: CachedNetworkImage(
+                      imageUrl: "https://www.gravatar.com/avatar/f4d979271ae042b54e5f717a803abcf3?s=200",
                       fit: BoxFit.fitHeight,
                     ),
                   ),
@@ -290,19 +305,35 @@ class PortfolioPage extends GetView<PortfolioController> {
                       ),
                     )),
                 MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () async {
-                        await launchUrlString("https://www.leetcode.com/bankuu");
-                      },
-                      child: Row(
-                        children: [
-                          Text("LeetCode", style: textStyle.copyWith(fontSize: 20)),
-                          const SizedBox(width: 10),
-                          Text("bankuu", style: textStyle.copyWith(fontSize: 20)),
-                        ],
-                      ),
-                    )),
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () async {
+                      await launchUrlString("https://www.leetcode.com/bankuu");
+                    },
+                    child: Row(
+                      children: [
+                        Text("LeetCode", style: textStyle.copyWith(fontSize: 20)),
+                        const SizedBox(width: 10),
+                        Text("bankuu", style: textStyle.copyWith(fontSize: 20)),
+                      ],
+                    ),
+                  ),
+                ),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () async {
+                      await launchUrlString("https://resume.bankuu.info");
+                    },
+                    child: Row(
+                      children: [
+                        Text("Resume", style: textStyle.copyWith(fontSize: 20)),
+                        const SizedBox(width: 10),
+                        Text("bankuu", style: textStyle.copyWith(fontSize: 20)),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           )
