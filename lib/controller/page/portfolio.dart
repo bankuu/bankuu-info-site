@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import "dart:html" as html;
 
-enum Menu { about, skills, experience, anythingElse, contact }
+enum Menu { about, skills, experience,
+  // anythingElse,
+  contact }
 
 extension MenuExtension on Menu {
   String get name {
@@ -13,8 +15,8 @@ extension MenuExtension on Menu {
         return "Skill";
       case Menu.experience:
         return "Experience";
-      case Menu.anythingElse:
-        return "Anything-Else";
+      // case Menu.anythingElse:
+      //   return "Anything-Else";
       case Menu.contact:
         return "Contact";
     }
@@ -28,8 +30,8 @@ extension MenuExtension on Menu {
         return Colors.green;
       case Menu.experience:
         return Colors.blue;
-      case Menu.anythingElse:
-        return Colors.pink;
+      // case Menu.anythingElse:
+      //   return Colors.pink;
       case Menu.contact:
         return Colors.orange;
     }

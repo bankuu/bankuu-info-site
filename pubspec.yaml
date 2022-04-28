@@ -44,6 +44,10 @@ flutter:
   assets:
     - asset/image/
     - asset/image/nysiis/
+    - asset/image/pinperty/
+    - asset/image/bighead/
+    - asset/image/tdev/
+
     - asset/rive/
   fonts:
     - family: IanCPU

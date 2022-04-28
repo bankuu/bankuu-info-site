@@ -1,10 +1,4 @@
-import 'dart:math';
-
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/painting.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:bankuu_info_site/controller/page/portfolio.dart';
 import 'package:bankuu_info_site/utility.dart';
@@ -154,10 +148,10 @@ class PortfolioPage extends GetView<PortfolioController> {
         return _buildSkillPage();
       case Menu.experience:
         return _buildExperiencePage(context);
-      case Menu.anythingElse:
+      // case Menu.anythingElse:
       case Menu.contact:
       default:
-        return Container();
+        return _buildContactPage(context);
     }
   }
 
@@ -519,14 +513,14 @@ class PortfolioPage extends GetView<PortfolioController> {
         _buildExperiencePagePinpertyPageItem(pageController),
         _buildExperiencePageBigheadPageItem(pageController),
         _buildExperiencePageTDEVPageItem(pageController),
-        _buildExperiencePageFreelancePageItem(pageController),
+        // _buildExperiencePageFreelancePageItem(pageController),
         // _buildExperiencePageGoRuTANPageItem(pageController),
       ],
     );
   }
 
   Widget _buildExperiencePageNysiisPageItem(PageController pageController) {
-    var textStyle = TextStyle(fontFamily: 'RobotoMono', color: Colors.grey.shade100);
+    var textStyle = TextStyle(fontFamily: 'RobotoMono', color: Colors.orange.shade100);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -540,47 +534,54 @@ class PortfolioPage extends GetView<PortfolioController> {
               children: [
                 SizedBox(
                   height: 150,
+                  width: 700,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Spacer(),
                       Image.asset(
                         "asset/image/nysiis/nysiis-doa-logo.png",
                         fit: BoxFit.fitHeight,
                       ),
                       const SizedBox(width: 10),
-                      Expanded(child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AutoSizeText(
-                            "NSW Project - Department of Agriculture",
-                            style: textStyle.copyWith(
-                              fontSize: 22,
-                            ),
-                            maxLines: 1,
+                      Expanded(
+                        child: Container(
+                          constraints: const BoxConstraints(minWidth: 500),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              AutoSizeText(
+                                "NSW Project - Department of Agriculture",
+                                style: textStyle.copyWith(
+                                  fontSize: 22,
+                                ),
+                                maxLines: 1,
+                              ),
+                              const SizedBox(height: 10),
+                              SizedBox(
+                                height: 100,
+                                child: AutoSizeText.rich(
+                                  const TextSpan(children: [
+                                    TextSpan(text: " - Develop Web Application  of Customer in e-Documentary Request System\n"),
+                                    TextSpan(text: " - Develop Application  of Administrator in e-Documentary Approval System\n"),
+                                    TextSpan(text: " - Develop Service Layer to WebService"),
+                                  ]),
+                                  style: textStyle.copyWith(fontSize: 16),
+                                  minFontSize: 0,
+                                  stepGranularity: 0.1,
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 100,
-                            child: AutoSizeText.rich(
-                              const TextSpan(children: [
-                                TextSpan(text: " - Develop Web Application (ASP.NET) of Customer in e-Documentary Request System\n"),
-                                TextSpan(text: " - Develop Application (WinForm) of Administrator in e-Documentary Approval System\n"),
-                                TextSpan(text: " - Develop Service Layer to WebService (SOAP)"),
-                              ]),
-                              style: textStyle.copyWith(fontSize: 16),
-                              minFontSize: 0,
-                              stepGranularity: 0.1,
-                            ),
-                          ),
-                        ],
-                      ),),
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 SizedBox(
                   height: 150,
+                  width: 700,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -602,11 +603,12 @@ class PortfolioPage extends GetView<PortfolioController> {
                               ),
                               maxLines: 1,
                             ),
+                            const SizedBox(height: 10),
                             SizedBox(
                               height: 100,
                               child: AutoSizeText.rich(
                                 const TextSpan(children: [
-                                  TextSpan(text: " - Fixbug & Troubleshoot ERP Application (ASP.NET) of Internal System\n"),
+                                  TextSpan(text: " - Fixbug & Troubleshoot ERP Application of Internal System\n"),
                                   TextSpan(text: " - Support & Test Step on ERP Application\n"),
                                 ]),
                                 style: textStyle.copyWith(fontSize: 16),
@@ -639,7 +641,7 @@ class PortfolioPage extends GetView<PortfolioController> {
   }
 
   Widget _buildExperiencePageUIHPageItem(PageController pageController) {
-    var textStyle = const TextStyle(fontFamily: 'RobotoMono', color: Colors.white);
+    var textStyle = TextStyle(fontFamily: 'RobotoMono', color: Colors.green.shade100);
     return Column(children: [
       Expanded(
         child: Container(
@@ -650,34 +652,32 @@ class PortfolioPage extends GetView<PortfolioController> {
             children: [
               SizedBox(
                 height: 150,
+                width: 700,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      "asset/image/nysiis/nysiis-doa-logo.png",
-                      fit: BoxFit.fitHeight,
-                    ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           AutoSizeText(
-                            "NSW Project - Department of Agriculture",
+                            "Internal Company Group",
                             style: textStyle.copyWith(
                               fontSize: 22,
                             ),
                             maxLines: 1,
                           ),
+                          const SizedBox(height: 10),
                           SizedBox(
                             height: 100,
                             child: AutoSizeText.rich(
                               const TextSpan(children: [
-                                TextSpan(text: " - Develop Web Application (ASP.NET) of Customer in e-Documentary Request System\n"),
-                                TextSpan(text: " - Develop Application (WinForm) of Administrator in e-Documentary Approval System\n"),
-                                TextSpan(text: " - Develop Service Layer to WebService (SOAP)"),
+                                TextSpan(text: " - Develop Backends Service Website to contact consumers\n"),
+                                TextSpan(text: " - Develop E-Mobile Top-up with Handle slip printer\n"),
+                                TextSpan(text: " - Develop Web Application to Display Layer-Map on google maps to browser for Wiring network"),
                               ]),
                               style: textStyle.copyWith(fontSize: 16),
                               minFontSize: 0,
@@ -707,10 +707,74 @@ class PortfolioPage extends GetView<PortfolioController> {
   }
 
   Widget _buildExperiencePagePinpertyPageItem(PageController pageController) {
+    var textStyle = TextStyle(fontFamily: 'RobotoMono', color: Colors.blue.shade200);
+
     return Column(children: [
-      const Spacer(),
+      Expanded(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 200,
+                width: 750,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          AutoSizeText(
+                            "Real Estate Trading Platform",
+                            style: textStyle.copyWith(
+                              fontSize: 22,
+                            ),
+                            maxLines: 1,
+                          ),
+                          const SizedBox(height: 10),
+                          SizedBox(
+                            height: 150,
+                            child: AutoSizeText.rich(
+                              const TextSpan(children: [
+                                TextSpan(text: " - Design DBS and Use Flexview to optimized in RDBMS\n"),
+                                TextSpan(text: " - Design InfoBase to keeping BigData in MongoDB\n"),
+                                TextSpan(text: " - Build SphinxSearch in Full-Text Search Engine\n"),
+                                TextSpan(text: " - Deploy OLAP server to Reporting applications on sites\n"),
+                                TextSpan(text: " - Create Glue Language in passing between process\n"),
+                                TextSpan(text: " - Build WebSocket to realtime-process in applications\n"),
+                                TextSpan(text: " - Develop Mobile-Application using for Survey\n"),
+                                TextSpan(text: " - Install and Maintenance Server in project"),
+                              ]),
+                              style: textStyle.copyWith(fontSize: 16),
+                              minFontSize: 0,
+                              stepGranularity: 0.1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 200,
+                child: Image.asset(
+                  "asset/image/pinperty/pinperty-project-view.png",
+                  fit: BoxFit.fitHeight,
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
       _buildExperiencePageButtonBar(pageController,
-          title: "System Engineer | Pinperty Co., Ltd.",
+          title: "Startup Member, System Engineer | Pinperty Co., Ltd.",
           subtitle: "April 2015 - April 2016",
           colorList: [
             Colors.lightBlue,
@@ -722,10 +786,134 @@ class PortfolioPage extends GetView<PortfolioController> {
   }
 
   Widget _buildExperiencePageBigheadPageItem(PageController pageController) {
+    var textStyle = TextStyle(fontFamily: 'RobotoMono', color: Colors.red.shade100);
+
     return Column(children: [
-      const Spacer(),
+      Expanded(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 20),
+              AutoSizeText(
+                "CRM & Privilege Application",
+                style: textStyle.copyWith(
+                  fontSize: 22,
+                ),
+                maxLines: 1,
+              ),
+              const SizedBox(height: 20),
+              Expanded(
+                child: AutoSizeText.rich(
+                  const TextSpan(children: [
+                    TextSpan(text: "MTL Smile Service\n"),
+                    TextSpan(text: " - Implement on MVP Concept\n"),
+                    TextSpan(text: " - Use with Mobile Native Language\n"),
+                    TextSpan(text: " - Communicate Service Layer with SOAP\n\n"),
+                    TextSpan(text: "Toyota T-Mex & Privilege\n"),
+                    TextSpan(text: " - Design on Reactive Programing Concept (ReactiveX)\n"),
+                    TextSpan(text: " - Use with Mobile Native Language\n"),
+                    TextSpan(text: " - Communicate Service Layer with REST\n\n"),
+                    TextSpan(text: "Meetang\n"),
+                    TextSpan(text: " - Implement on MVC Concept\n"),
+                    TextSpan(text: " - Use with Cross-platform Language (Xamarin)\n"),
+                  ]),
+                  style: textStyle.copyWith(fontSize: 24),
+                  minFontSize: 0,
+                  stepGranularity: 0.1,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                "Some Projects that contribute to the developed",
+                style: textStyle.copyWith(fontSize: 16),
+              ),
+              const SizedBox(height: 20),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 500),
+                child: Row(children: [
+                  Expanded(
+                      child: Column(
+                    children: [
+                      SizedBox(
+                        height: 80,
+                        width: 80,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.asset(
+                            "asset/image/bighead/bighead-mtl-app-logo.png",
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text("MTL Smile Service", textAlign: TextAlign.center, style: textStyle)
+                    ],
+                  )),
+                  Expanded(
+                      child: Column(
+                    children: [
+                      SizedBox(
+                        height: 80,
+                        width: 80,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.asset(
+                            "asset/image/bighead/bighead-tmex-app-logo.png",
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text("Toyota T-MEx", textAlign: TextAlign.center, style: textStyle)
+                    ],
+                  )),
+                  Expanded(
+                      child: Column(
+                    children: [
+                      SizedBox(
+                        height: 80,
+                        width: 80,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.asset(
+                            "asset/image/bighead/bighead-toyota-app-logo.png",
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text("Toyota Privilege", textAlign: TextAlign.center, style: textStyle),
+                    ],
+                  )),
+                  Expanded(
+                      child: Column(
+                    children: [
+                      SizedBox(
+                        height: 80,
+                        width: 80,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.asset(
+                            "asset/image/bighead/bighead-meetang-app-logo.png",
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text("Meetang", textAlign: TextAlign.center, style: textStyle),
+                    ],
+                  )),
+                ]),
+              ),
+            ],
+          ),
+        ),
+      ),
       _buildExperiencePageButtonBar(pageController,
-          title: "Senior Fullstack Developer | Bighead Co., Ltd.",
+          title: "Mobile Developer | Bighead Co., Ltd.",
           subtitle: "June 2016 - February 2018",
           colorList: [
             Colors.redAccent,
@@ -737,25 +925,176 @@ class PortfolioPage extends GetView<PortfolioController> {
   }
 
   Widget _buildExperiencePageTDEVPageItem(PageController pageController) {
+    var textStyle = TextStyle(fontFamily: 'RobotoMono', color: Colors.lightBlueAccent.shade100);
+
     return Column(children: [
-      const Spacer(),
-      _buildExperiencePageButtonBar(
-        pageController,
-        title: "Co-Founder, R&D Initiator | T-DEV Co., Ltd.",
-        subtitle: "August 2018 - May 2022",
-        colorList: [
-          Colors.lightBlueAccent,
-          Colors.blue,
-          Colors.lightBlueAccent,
-        ],
-        assetImage: "asset/image/tdev-logo.png",
+      Expanded(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 20),
+              AutoSizeText(
+                "CRM System & IoT Platform",
+                style: textStyle.copyWith(
+                  fontSize: 22,
+                ),
+                maxLines: 1,
+              ),
+              const SizedBox(height: 20),
+              Expanded(
+                child: AutoSizeText.rich(
+                  const TextSpan(children: [
+                    TextSpan(text: "Otteri ORM Platform\n"),
+                    TextSpan(text: " - Implement on Bloc Pattern & N-Tier Concept\n"),
+                    TextSpan(text: " - Implement on MVT+Serializer Concept\n"),
+                    TextSpan(text: " - Use Dart on Frontend Language\n"),
+                    TextSpan(text: " - Use Python on Backend Language\n\n"),
+                    TextSpan(text: "Laundromat Control Platform & Internal Payment Gateway\n"),
+                    TextSpan(text: " - Use Golang Language\n"),
+                    TextSpan(text: " - Implement on Microservice + Clean Architecture Concept\n"),
+                    TextSpan(text: " - Used MQTT Broker to Communicate Service and IoT Unit\n\n"),
+                    TextSpan(text: "IoT Box Service & Reserve Tray Service\n"),
+                    TextSpan(text: " - Use Python Language\n"),
+                    TextSpan(text: " - Implement on MVT+Serializer Concept\n\n"),
+                  ]),
+                  style: textStyle.copyWith(fontSize: 24),
+                  minFontSize: 0,
+                  stepGranularity: 0.1,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                "Some Projects that contribute to the developed",
+                style: textStyle.copyWith(fontSize: 16),
+              ),
+              const SizedBox(height: 20),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 650),
+                child: Row(children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 70,
+                          width: 70,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "asset/image/tdev/tdev-otteri-app-logo.png",
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text("Otteri CRM Platform", textAlign: TextAlign.center, style: textStyle)
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 70,
+                          width: 70,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "asset/image/tdev/tdev-lcp-app-logo.png",
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        AutoSizeText("LC Platform", textAlign: TextAlign.center, style: textStyle)
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 70,
+                          width: 70,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "asset/image/tdev/tdev-knexpay-app-logo.png",
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text("Internal PG", textAlign: TextAlign.center, style: textStyle),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 70,
+                          width: 70,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "asset/image/tdev/tdev-2eh-app-logo.png",
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text("IoT Box Service", textAlign: TextAlign.center, style: textStyle),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 70,
+                          width: 70,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "asset/image/tdev/tdev-railway-app-logo.png",
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text("Reserve Tray Service", textAlign: TextAlign.center, style: textStyle),
+                      ],
+                    ),
+                  ),
+                ]),
+              ),
+            ],
+          ),
+        ),
       ),
+      _buildExperiencePageButtonBar(pageController,
+          title: "Co-Founder, R&D Initiator | T-DEV Co., Ltd.",
+          subtitle: "August 2018 - May 2022",
+          colorList: [
+            Colors.lightBlueAccent,
+            Colors.blue,
+            Colors.lightBlueAccent,
+          ],
+          assetImage: "asset/image/tdev-logo.png",
+          isHideNext: true),
     ]);
   }
 
   Widget _buildExperiencePageFreelancePageItem(PageController pageController) {
+    var textStyle = const TextStyle(fontFamily: 'RobotoMono', color: Colors.white24);
+
     return Column(children: [
-      const Spacer(),
+      Expanded(
+        child: Text("Coming Soon...", style: textStyle),
+      ),
       _buildExperiencePageButtonBar(pageController,
           title: "Freelance Coder",
           subtitle: "2018 - NOW",
@@ -866,5 +1205,9 @@ class PortfolioPage extends GetView<PortfolioController> {
         ]),
       ),
     );
+  }
+
+  Widget _buildContactPage(BuildContext context) {
+    return Container();
   }
 }
