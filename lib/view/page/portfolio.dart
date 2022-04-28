@@ -264,77 +264,93 @@ class PortfolioPage extends GetView<PortfolioController> {
           const Spacer(),
           Expanded(
             flex: 2,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                MouseRegion(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () async {
+                          await launchUrlString("https://github.com/bankuu");
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(
+                              FontAwesome.github,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                            const SizedBox(width: 10),
+                            Text("bankuu", style: textStyle.copyWith(fontSize: 20)),
+                          ],
+                        ),
+                      )),
+
+                  MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
                       onTap: () async {
-                        await launchUrlString("https://github.com/bankuu");
+                        await launchUrlString("https://www.leetcode.com/bankuu");
                       },
                       child: Row(
                         children: [
-                          const Icon(
-                            FontAwesome.github,
-                            color: Colors.white,
-                            size: 30,
-                          ),
+                          Text("LeetCode", style: textStyle.copyWith(fontSize: 20)),
                           const SizedBox(width: 10),
                           Text("bankuu", style: textStyle.copyWith(fontSize: 20)),
                         ],
                       ),
-                    )),
-                MouseRegion(
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () async {
+                          await launchUrlString("https://www.instagram.com/bankuu.gorutan");
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(
+                              FontAwesome.instagram,
+                              color: Colors.white,
+                              size: 25,
+                            ),
+                            const SizedBox(width: 15),
+                            Text("bankuu.gorutan", style: textStyle.copyWith(fontSize: 20)),
+                          ],
+                        ),
+                      )),
+                  MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
                       onTap: () async {
-                        await launchUrlString("https://www.instagram.com/bankuu.gorutan");
+                        await launchUrlString("https://resume.bankuu.info");
                       },
                       child: Row(
                         children: [
-                          const Icon(
-                            FontAwesome.instagram,
-                            color: Colors.white,
-                            size: 20,
-                          ),
+                          Text("Resume", style: textStyle.copyWith(fontSize: 20)),
                           const SizedBox(width: 10),
-                          Text("bankuu.gorutan", style: textStyle.copyWith(fontSize: 20)),
+                          Text("bankuu", style: textStyle.copyWith(fontSize: 20)),
                         ],
                       ),
-                    )),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () async {
-                      await launchUrlString("https://www.leetcode.com/bankuu");
-                    },
-                    child: Row(
-                      children: [
-                        Text("LeetCode", style: textStyle.copyWith(fontSize: 20)),
-                        const SizedBox(width: 10),
-                        Text("bankuu", style: textStyle.copyWith(fontSize: 20)),
-                      ],
                     ),
                   ),
-                ),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () async {
-                      await launchUrlString("https://resume.bankuu.info");
-                    },
-                    child: Row(
-                      children: [
-                        Text("Resume", style: textStyle.copyWith(fontSize: 20)),
-                        const SizedBox(width: 10),
-                        Text("bankuu", style: textStyle.copyWith(fontSize: 20)),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           )
         ],
