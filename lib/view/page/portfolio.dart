@@ -22,12 +22,13 @@ class PortfolioPage extends GetView<PortfolioController> {
               padding: const EdgeInsets.only(top: 15, left: 15),
               child: ShaderMask(
                 blendMode: BlendMode.srcIn,
-                shaderCallback: (bounds) => LinearGradient(colors: [
-                  ColorSet.textBegin.color,
-                  ColorSet.textEnd.color,
-                ]).createShader(
-                  Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-                ),
+                shaderCallback: (bounds) =>
+                    LinearGradient(colors: [
+                      ColorSet.textBegin.color,
+                      ColorSet.textEnd.color,
+                    ]).createShader(
+                      Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                    ),
                 child: const FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text("BANKUU", style: TextStyle(fontSize: 100, height: 0.6)),
@@ -118,20 +119,21 @@ class PortfolioPage extends GetView<PortfolioController> {
                 ),
               ),
               Obx(
-                () => Expanded(
-                  child: Container(
-                    color: ColorSet.background.color,
-                    child: Container(
-                      // duration: const Duration(milliseconds: 500),
-                      margin: EdgeInsets.all(30 * (2 - tween)),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: controller.selectedMenu?.color ?? ColorSet.background.color, width: 3),
-                        color: controller.selectedMenu?.color.withAlpha(10) ?? Colors.transparent,
+                    () =>
+                    Expanded(
+                      child: Container(
+                        color: ColorSet.background.color,
+                        child: Container(
+                          // duration: const Duration(milliseconds: 500),
+                          margin: EdgeInsets.all(30 * (2 - tween)),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: controller.selectedMenu?.color ?? ColorSet.background.color, width: 3),
+                            color: controller.selectedMenu?.color.withAlpha(10) ?? Colors.transparent,
+                          ),
+                          child: _buildMenuPage(context),
+                        ),
                       ),
-                      child: _buildMenuPage(context),
                     ),
-                  ),
-                ),
               )
             ],
           ),
@@ -148,10 +150,11 @@ class PortfolioPage extends GetView<PortfolioController> {
         return _buildSkillPage();
       case Menu.experience:
         return _buildExperiencePage(context);
-      // case Menu.anythingElse:
+    // case Menu.anythingElse:
       case Menu.contact:
-      default:
         return _buildContactPage(context);
+      default:
+        return Container();
     }
   }
 
@@ -205,7 +208,10 @@ class PortfolioPage extends GetView<PortfolioController> {
           // const SizedBox(height: 50),
           const Spacer(),
           Container(
-            height: MediaQuery.of(context).size.height / 5,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 5,
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: AutoSizeText(
               "           Over 8 years in software development, overseeing all aspects of the software development life cycle, from analysis mockup through implementation, deployment, and troubleshooting, I created a platform for iot to control washer machines in 600+ laundromats all over the country and built 3+ mobile applications in-store with over 10k+ active users.",
@@ -286,12 +292,13 @@ class PortfolioPage extends GetView<PortfolioController> {
           alignment: Alignment.bottomCenter,
           child: ShaderMask(
             blendMode: BlendMode.srcIn,
-            shaderCallback: (bounds) => LinearGradient(colors: [
-              ColorSet.textBegin.color,
-              ColorSet.textEnd.color,
-            ]).createShader(
-              Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-            ),
+            shaderCallback: (bounds) =>
+                LinearGradient(colors: [
+                  ColorSet.textBegin.color,
+                  ColorSet.textEnd.color,
+                ]).createShader(
+                  Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                ),
             child: const Text("FullStack Developer", style: TextStyle(fontSize: 75, height: 1)),
           ),
         ),
@@ -320,8 +327,8 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               Text(
                 "Dart, TS, JS\n"
-                "Kotlin, Swift, CSS\n"
-                "HTML, Markdown",
+                    "Kotlin, Swift, CSS\n"
+                    "HTML, Markdown",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -333,8 +340,8 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               Text(
                 "Flutter, Angular, Nuxt.js\n"
-                "Svelte, Mobile Native\n"
-                "Tailwind, D3.js",
+                    "Svelte, Mobile Native\n"
+                    "Tailwind, D3.js",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -346,8 +353,8 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               Text(
                 "Reactive Programming\n"
-                "Clean Architecture\n"
-                "MV[C/P/VM], JAMStack",
+                    "Clean Architecture\n"
+                    "MV[C/P/VM], JAMStack",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -375,8 +382,8 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               Text(
                 "Golang, Python\n"
-                "C#, Java, JS\n"
-                "JSON, XML, YAML, Protobuf",
+                    "C#, Java, JS\n"
+                    "JSON, XML, YAML, Protobuf",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -388,10 +395,10 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               Text(
                 "Echo, Gofiber, Django+DRF\n"
-                ".NET, FastAPI, Falcon\n"
-                "GORM, SQLAlchemy, EF.NET\n"
-                "Asynq, Celery\n"
-                "OpenFaaS, Cloudflare Worker",
+                    ".NET, FastAPI, Falcon\n"
+                    "GORM, SQLAlchemy, EF.NET\n"
+                    "Asynq, Celery\n"
+                    "OpenFaaS, Cloudflare Worker",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -403,8 +410,8 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               Text(
                 "RDBMS, TSDB, NoSQL\n"
-                "Redis, Memcache\n"
-                "Strapi, Directus, NocoDB",
+                    "Redis, Memcache\n"
+                    "Strapi, Directus, NocoDB",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -422,8 +429,8 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               Text(
                 "Data Structure & Algorithm\n"
-                "OOP + Design Pattern, N-Tier\n"
-                "Clean Architecture",
+                    "OOP + Design Pattern, N-Tier\n"
+                    "Clean Architecture",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -435,7 +442,7 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               Text(
                 "ORM, Multi-Processing\n"
-                "Caching, Message Queue",
+                    "Caching, Message Queue",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -463,8 +470,8 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               Text(
                 "UNIX & Linux Kernel\n"
-                "VMware ESXi, Hyper-V, Docker\n"
-                "Nginx, IIS, Gunicorn, Traefik",
+                    "VMware ESXi, Hyper-V, Docker\n"
+                    "Nginx, IIS, Gunicorn, Traefik",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -476,9 +483,9 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               Text(
                 "AWS, DigitalOcean, Cloudflare\n"
-                "EC2, EKS, RDS, S3\n"
-                "Droplet, Space\n"
-                "Page, Worker & KV",
+                    "EC2, EKS, RDS, S3\n"
+                    "Droplet, Space\n"
+                    "Page, Worker & KV",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -490,8 +497,8 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               Text(
                 "SSH, FTP, RPC\n"
-                "TeamCity, Github CI\n"
-                "Monday, Taskade",
+                    "TeamCity, Github CI\n"
+                    "Monday, Taskade",
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(fontSize: 15),
               ),
@@ -827,7 +834,7 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               const SizedBox(height: 20),
               Text(
-                "Some Projects that contribute to the developed",
+                "Some project that contribute to the developed",
                 style: textStyle.copyWith(fontSize: 16),
               ),
               const SizedBox(height: 20),
@@ -836,76 +843,76 @@ class PortfolioPage extends GetView<PortfolioController> {
                 child: Row(children: [
                   Expanded(
                       child: Column(
-                    children: [
-                      SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.asset(
-                            "asset/image/bighead/bighead-mtl-app-logo.png",
-                            fit: BoxFit.fitHeight,
+                        children: [
+                          SizedBox(
+                            height: 80,
+                            width: 80,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Image.asset(
+                                "asset/image/bighead/bighead-mtl-app-logo.png",
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text("MTL Smile Service", textAlign: TextAlign.center, style: textStyle)
-                    ],
-                  )),
+                          const SizedBox(height: 10),
+                          Text("MTL Smile Service", textAlign: TextAlign.center, style: textStyle)
+                        ],
+                      )),
                   Expanded(
                       child: Column(
-                    children: [
-                      SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.asset(
-                            "asset/image/bighead/bighead-tmex-app-logo.png",
-                            fit: BoxFit.fitHeight,
+                        children: [
+                          SizedBox(
+                            height: 80,
+                            width: 80,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Image.asset(
+                                "asset/image/bighead/bighead-tmex-app-logo.png",
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text("Toyota T-MEx", textAlign: TextAlign.center, style: textStyle)
-                    ],
-                  )),
+                          const SizedBox(height: 10),
+                          Text("Toyota T-MEx", textAlign: TextAlign.center, style: textStyle)
+                        ],
+                      )),
                   Expanded(
                       child: Column(
-                    children: [
-                      SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.asset(
-                            "asset/image/bighead/bighead-toyota-app-logo.png",
-                            fit: BoxFit.fitHeight,
+                        children: [
+                          SizedBox(
+                            height: 80,
+                            width: 80,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Image.asset(
+                                "asset/image/bighead/bighead-toyota-app-logo.png",
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text("Toyota Privilege", textAlign: TextAlign.center, style: textStyle),
-                    ],
-                  )),
+                          const SizedBox(height: 10),
+                          Text("Toyota Privilege", textAlign: TextAlign.center, style: textStyle),
+                        ],
+                      )),
                   Expanded(
                       child: Column(
-                    children: [
-                      SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.asset(
-                            "asset/image/bighead/bighead-meetang-app-logo.png",
-                            fit: BoxFit.fitHeight,
+                        children: [
+                          SizedBox(
+                            height: 80,
+                            width: 80,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Image.asset(
+                                "asset/image/bighead/bighead-meetang-app-logo.png",
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text("Meetang", textAlign: TextAlign.center, style: textStyle),
-                    ],
-                  )),
+                          const SizedBox(height: 10),
+                          Text("Meetang", textAlign: TextAlign.center, style: textStyle),
+                        ],
+                      )),
                 ]),
               ),
             ],
@@ -967,7 +974,7 @@ class PortfolioPage extends GetView<PortfolioController> {
               ),
               const SizedBox(height: 20),
               Text(
-                "Some Projects that contribute to the developed",
+                "Some project that contribute to the developed",
                 style: textStyle.copyWith(fontSize: 16),
               ),
               const SizedBox(height: 20),
@@ -1123,8 +1130,7 @@ class PortfolioPage extends GetView<PortfolioController> {
     ]);
   }
 
-  Widget _buildExperiencePageButtonBar(
-    PageController pageController, {
+  Widget _buildExperiencePageButtonBar(PageController pageController, {
     required String title,
     required String subtitle,
     required List<Color> colorList,
@@ -1160,9 +1166,10 @@ class PortfolioPage extends GetView<PortfolioController> {
           Expanded(
             child: ShaderMask(
               blendMode: BlendMode.srcIn,
-              shaderCallback: (bounds) => LinearGradient(colors: colorList).createShader(
-                Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-              ),
+              shaderCallback: (bounds) =>
+                  LinearGradient(colors: colorList).createShader(
+                    Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                  ),
               child: Column(
                 children: [
                   Expanded(
@@ -1208,6 +1215,24 @@ class PortfolioPage extends GetView<PortfolioController> {
   }
 
   Widget _buildContactPage(BuildContext context) {
-    return Container();
+    var textStyle = const TextStyle(color: Colors.white70, fontSize: 50);
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children:  [
+            SelectableText("EMAIL : ban.kuu@yahoo.com", style: textStyle),
+            SelectableText("PHONE : (+66) 95-525-1704", style: textStyle),
+            SelectableText("LINKEDIN : linkedin.com/in/bankuu", style: textStyle),
+          ],
+        ),
+        Opacity(
+          opacity: 0.1,
+          child: Image.asset("asset/image/contact-bg.png"),
+        ),
+      ],
+    );
   }
 }
