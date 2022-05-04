@@ -10,82 +10,92 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class PortfolioPage extends GetView<PortfolioController> {
-  const PortfolioPage({Key? key}) : super(key: key);
+  final FocusNode _focusNode = FocusNode();
+
+  PortfolioPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var isCorrectScale = MediaQuery.of(context).size.height > 768 && MediaQuery.of(context).size.width > 1024;
-    return CupertinoPageScaffold(
-      child: Stack(children: [
-        if (isCorrectScale)
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 15, left: 15),
-                child: ShaderMask(
-                  blendMode: BlendMode.srcIn,
-                  shaderCallback: (bounds) => LinearGradient(colors: [
-                    ColorSet.textBegin.color,
-                    ColorSet.textEnd.color,
-                  ]).createShader(
-                    Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-                  ),
-                  child: const FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text("BANKUU", style: TextStyle(fontSize: 100, height: 0.6)),
-                  ),
-                ),
-              ),
-              Expanded(child: _buildDesktopLayout(context)),
-            ],
-          )
-        else
-          Container(
-            alignment: Alignment.center,
-            child: ShaderMask(
-              blendMode: BlendMode.srcIn,
-              shaderCallback: (bounds) => LinearGradient(colors: [
-                ColorSet.textBegin.color,
-                ColorSet.textEnd.color,
-              ]).createShader(
-                Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text("BANKUU", style: TextStyle(fontSize: 100, height: 0.6)),
-                  ),
-                  const FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text("Please scale up layout!!", style: TextStyle(fontSize: 50, height: 0.6)),
-                  ),
-                  const FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text("Support Mobile Display in coming soon..", style: TextStyle(fontSize: 50, height: 0.6)),
-                  ),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () async {
-                        await launchUrlString("https://resume.bankuu.info");
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text("Click to read Resume", style: TextStyle(fontSize: 50)),
-                        ],
-                      ),
+
+    return RawKeyboardListener(
+      autofocus: true,
+      onKey: (value) {
+        controller.onKey(value);
+      },
+      focusNode: _focusNode,
+      child: CupertinoPageScaffold(
+        child: Stack(children: [
+          if (isCorrectScale)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 15, left: 15),
+                  child: ShaderMask(
+                    blendMode: BlendMode.srcIn,
+                    shaderCallback: (bounds) => LinearGradient(colors: [
+                      ColorSet.textBegin.color,
+                      ColorSet.textEnd.color,
+                    ]).createShader(
+                      Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                    ),
+                    child: const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text("BANKUU", style: TextStyle(fontSize: 100, height: 0.6)),
                     ),
                   ),
-                ],
+                ),
+                Expanded(child: _buildDesktopLayout(context)),
+              ],
+            )
+          else
+            Container(
+              alignment: Alignment.center,
+              child: ShaderMask(
+                blendMode: BlendMode.srcIn,
+                shaderCallback: (bounds) => LinearGradient(colors: [
+                  ColorSet.textBegin.color,
+                  ColorSet.textEnd.color,
+                ]).createShader(
+                  Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text("BANKUU", style: TextStyle(fontSize: 100, height: 0.6)),
+                    ),
+                    const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text("Please scale up layout!!", style: TextStyle(fontSize: 50, height: 0.6)),
+                    ),
+                    const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text("Support Mobile Display in coming soon..", style: TextStyle(fontSize: 50, height: 0.6)),
+                    ),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () async {
+                          await launchUrlString("https://resume.bankuu.info");
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text("Click to read Resume", style: TextStyle(fontSize: 50)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ShareView.buildButtonBar(context),
-      ]),
+          ShareView.buildButtonBar(context),
+        ]),
+      ),
     );
   }
 
@@ -288,7 +298,6 @@ class PortfolioPage extends GetView<PortfolioController> {
                           ],
                         ),
                       )),
-
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
@@ -584,15 +593,14 @@ class PortfolioPage extends GetView<PortfolioController> {
   }
 
   Widget _buildExperiencePage(BuildContext context) {
-    var pageController = PageController();
     return PageView(
-      controller: pageController,
+      controller: controller.pageController,
       children: [
-        _buildExperiencePageNysiisPageItem(pageController),
-        _buildExperiencePageUIHPageItem(pageController),
-        _buildExperiencePagePinpertyPageItem(pageController),
-        _buildExperiencePageBigheadPageItem(pageController),
-        _buildExperiencePageTDEVPageItem(pageController),
+        _buildExperiencePageNysiisPageItem(controller.pageController),
+        _buildExperiencePageUIHPageItem(controller.pageController),
+        _buildExperiencePagePinpertyPageItem(controller.pageController),
+        _buildExperiencePageBigheadPageItem(controller.pageController),
+        _buildExperiencePageTDEVPageItem(controller.pageController),
         // _buildExperiencePageFreelancePageItem(pageController),
         // _buildExperiencePageGoRuTANPageItem(pageController),
       ],

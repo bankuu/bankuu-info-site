@@ -31,7 +31,7 @@ void main() {
         ),
         GetPage(
           name: "/portfolio",
-          page: () => const PortfolioPage(),
+          page: () => PortfolioPage(),
           binding: PortfolioControllerBinding(),
         ),
       ],
