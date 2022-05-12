@@ -104,96 +104,149 @@ class PortfolioPage extends GetView<PortfolioController> {
     var _menuTotalHeight = 500;
     var _menuSelectedItemHeight = _menuTotalHeight - (_menuItemHeight * Menu.values.length) - 25;
 
-    return TweenAnimationBuilder(
-      tween: Tween<double>(begin: 0, end: 1),
-      duration: const Duration(seconds: 1),
-      curve: Curves.easeInOut,
-      builder: (context, double tween, widget) {
-        return Opacity(
-          opacity: tween,
-          child: Row(
-            children: [
-              SizedBox(
-                width: 400 * tween,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Column(
+    return Stack(
+      children: [
+        TweenAnimationBuilder(
+          tween: Tween<double>(begin: 0, end: 1),
+          duration: const Duration(seconds: 1),
+          curve: Curves.easeInOut,
+          builder: (context, double tween, widget) {
+            return Opacity(
+              opacity: tween,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 400 * tween,
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: Menu.values.map((element) {
-                        return Obx(() {
-                          var isSelected = controller.selectedMenu == element;
-                          return TweenAnimationBuilder(
-                              tween: Tween<double>(begin: 0, end: 1),
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeOutCubic,
-                              builder: (BuildContext context, double size, Widget? child) {
-                                return AnimatedContainer(
-                                  height: isSelected ? _menuSelectedItemHeight : _menuItemHeight,
-                                  curve: Curves.easeInOut,
-                                  duration: const Duration(milliseconds: 350),
-                                  child: Center(
-                                    child: MouseRegion(
-                                      cursor: SystemMouseCursors.click,
-                                      child: GestureDetector(
-                                        behavior: HitTestBehavior.opaque,
-                                        onTapDown: (_) {
-                                          controller.selectMenu(element);
-                                        },
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                                          textBaseline: TextBaseline.ideographic,
-                                          children: [
-                                            AnimatedSlide(
-                                              duration: const Duration(milliseconds: 200),
-                                              offset: Offset(isSelected ? 0 : -10, 0),
-                                              child: Icon(Icons.arrow_forward_ios_sharp, color: isSelected ? element.color : Colors.white70, size: 30),
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: Menu.values.map((element) {
+                            return Obx(() {
+                              var isSelected = controller.selectedMenu == element;
+                              return TweenAnimationBuilder(
+                                  tween: Tween<double>(begin: 0, end: 1),
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeOutCubic,
+                                  builder: (BuildContext context, double size, Widget? child) {
+                                    return AnimatedContainer(
+                                      height: isSelected ? _menuSelectedItemHeight : _menuItemHeight,
+                                      curve: Curves.easeInOut,
+                                      duration: const Duration(milliseconds: 350),
+                                      child: Center(
+                                        child: MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
+                                            behavior: HitTestBehavior.opaque,
+                                            onTapDown: (_) {
+                                              controller.selectMenu(element);
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                                              textBaseline: TextBaseline.ideographic,
+                                              children: [
+                                                AnimatedSlide(
+                                                  duration: const Duration(milliseconds: 200),
+                                                  offset: Offset(isSelected ? 0 : -10, 0),
+                                                  child: Icon(Icons.arrow_forward_ios_sharp, color: isSelected ? element.color : Colors.white70, size: 30),
+                                                ),
+                                                Text(
+                                                  element.name,
+                                                  style: TextStyle(color: isSelected ? element.color : Colors.white70, fontSize: 75, height: 0.5),
+                                                ),
+                                                AnimatedSlide(
+                                                  duration: const Duration(milliseconds: 200),
+                                                  offset: Offset(isSelected ? 0 : 10, 0),
+                                                  child: Icon(Icons.arrow_back_ios_sharp, color: isSelected ? element.color : Colors.white70, size: 30),
+                                                ),
+                                              ],
                                             ),
-                                            Text(
-                                              element.name,
-                                              style: TextStyle(color: isSelected ? element.color : Colors.white70, fontSize: 75, height: 0.5),
-                                            ),
-                                            AnimatedSlide(
-                                              duration: const Duration(milliseconds: 200),
-                                              offset: Offset(isSelected ? 0 : 10, 0),
-                                              child: Icon(Icons.arrow_back_ios_sharp, color: isSelected ? element.color : Colors.white70, size: 30),
-                                            ),
-                                          ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                );
-                              });
-                        });
-                      }).toList(),
-                    ),
-                  ],
-                ),
-              ),
-              Obx(
-                () => Expanded(
-                  child: Container(
-                    color: ColorSet.background.color,
-                    child: Container(
-                      // duration: const Duration(milliseconds: 500),
-                      margin: EdgeInsets.all(30 * (2 - tween)),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: controller.selectedMenu?.color ?? ColorSet.background.color, width: 3),
-                        color: controller.selectedMenu?.color.withAlpha(10) ?? Colors.transparent,
-                      ),
-                      child: _buildMenuPage(context),
+                                    );
+                                  });
+                            });
+                          }).toList(),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              )
-            ],
+                  Obx(
+                    () => Expanded(
+                      child: Container(
+                        color: ColorSet.background.color,
+                        child: Container(
+                          // duration: const Duration(milliseconds: 500),
+                          margin: EdgeInsets.all(30 * (2 - tween)),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: controller.selectedMenu?.color ?? ColorSet.background.color, width: 3),
+                            color: controller.selectedMenu?.color.withAlpha(10) ?? Colors.transparent,
+                          ),
+                          child: _buildMenuPage(context),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            );
+          },
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          child: Container(
+            width: 120,
+            height: 80,
+            decoration: const BoxDecoration(
+              color: Colors.white12,
+              borderRadius: BorderRadius.only(topRight: Radius.circular(5)),
+            ),
+            child: Builder(builder: (context) {
+              _buildButton({isHide = false}) {
+                return Opacity(
+                  opacity: isHide ? 0 : 1,
+                  child: Container(
+                    color: Colors.green,
+                    width: 35,
+                    height: 35,
+                  ),
+                );
+              }
+
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      _buildButton(isHide: true),
+                      _buildButton(),
+                      _buildButton(isHide: true),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      _buildButton(),
+                      _buildButton(),
+                      _buildButton(),
+                    ],
+                  ),
+                ],
+              );
+            }),
           ),
-        );
-      },
+        )
+      ],
     );
   }
 
