@@ -59,6 +59,16 @@ class PortfolioController extends GetxController {
 
   PageController get pageController => _pageController.value;
 
+  final _isWKeyDown = false.obs;
+  final _isAKeyDown = false.obs;
+  final _isSKeyDown = false.obs;
+  final _isDKeyDown = false.obs;
+
+  bool get isWKeyDown => _isWKeyDown.value;
+  bool get isAKeyDown => _isAKeyDown.value;
+  bool get isSKeyDown => _isSKeyDown.value;
+  bool get isDKeyDown => _isDKeyDown.value;
+
   PortfolioController._internal();
 
   @override
@@ -81,26 +91,46 @@ class PortfolioController extends GetxController {
   }
 
   void onKey(RawKeyEvent value) {
-    if (value is RawKeyUpEvent) {
-      switch (value.logicalKey.keyLabel) {
-        case "Arrow Down":
-        case "S":
+    // if (value is RawKeyUpEvent) {
+    switch (value.logicalKey.keyLabel) {
+      case "Arrow Down":
+      case "S":
+        if (value is RawKeyUpEvent) {
           _selectDownMenu();
-          break;
-        case "Arrow Left":
-        case "A":
+          _isSKeyDown.value = false;
+        } else if (value is RawKeyDownEvent) {
+          _isSKeyDown.value = true;
+        }
+        break;
+      case "Arrow Left":
+      case "A":
+        if (value is RawKeyUpEvent) {
           _selectLeftMenu();
-          break;
-        case "Arrow Up":
-        case "W":
+          _isAKeyDown.value = false;
+        } else if (value is RawKeyDownEvent) {
+          _isAKeyDown.value = true;
+        }
+        break;
+      case "Arrow Up":
+      case "W":
+        if (value is RawKeyUpEvent) {
           _selectUpMenu();
-          break;
-        case "Arrow Right":
-        case "D":
+          _isWKeyDown.value = false;
+        } else if (value is RawKeyDownEvent) {
+          _isWKeyDown.value = true;
+        }
+        break;
+      case "Arrow Right":
+      case "D":
+        if (value is RawKeyUpEvent) {
           _selectRightMenu();
-          break;
-      }
+          _isDKeyDown.value = false;
+        } else if (value is RawKeyDownEvent) {
+          _isDKeyDown.value = true;
+        }
+        break;
     }
+    // }
   }
 
   void _selectUpMenu() {
@@ -118,7 +148,7 @@ class PortfolioController extends GetxController {
   }
 
   void _selectRightMenu() {
-    if (_selectedMenu.value == Menu.experience && (_pageController.value.page ?? 0) >= 0.0 ) {
+    if (_selectedMenu.value == Menu.experience && (_pageController.value.page ?? 0) >= 0.0) {
       _pageController.value.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
     }
   }

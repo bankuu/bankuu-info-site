@@ -208,11 +208,20 @@ class PortfolioPage extends GetView<PortfolioController> {
               borderRadius: BorderRadius.only(topRight: Radius.circular(5)),
             ),
             child: Builder(builder: (context) {
-              _buildButton({isHide = false}) {
+              _buildButton({bool isKeyDown = false, text = "W", isHide = false}) {
                 return Opacity(
                   opacity: isHide ? 0 : 1,
                   child: Container(
-                    color: Colors.green,
+                    padding: const EdgeInsets.only(left: 5, right: 5),
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      text,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                    color: ColorSet.background.color.withAlpha(isKeyDown ? 255 : 100),
                     width: 35,
                     height: 35,
                   ),
@@ -228,7 +237,7 @@ class PortfolioPage extends GetView<PortfolioController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       _buildButton(isHide: true),
-                      _buildButton(),
+                      Obx(() => _buildButton(isKeyDown: controller.isWKeyDown, text: "W")),
                       _buildButton(isHide: true),
                     ],
                   ),
@@ -236,9 +245,9 @@ class PortfolioPage extends GetView<PortfolioController> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      _buildButton(),
-                      _buildButton(),
-                      _buildButton(),
+                      Obx(() => _buildButton(isKeyDown: controller.isAKeyDown, text: "A")),
+                      Obx(() => _buildButton(isKeyDown: controller.isSKeyDown, text: "S")),
+                      Obx(() => _buildButton(isKeyDown: controller.isDKeyDown, text: "D")),
                     ],
                   ),
                 ],
