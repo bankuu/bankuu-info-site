@@ -31,6 +31,9 @@ jobs:
     - name: Checking Flutter Version
       run: flutter --version
 
+    - name: Build Publish Getter
+      run: flutter pub get
+
     - name: Install Peanut Activate
       run: dart pub global activate peanut
 
