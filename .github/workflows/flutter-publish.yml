@@ -30,7 +30,10 @@ jobs:
           channel: 'stable'
     - name: Checking Flutter Version
       run: flutter --version
- 
+
+    - name: Install Peanut Activate
+      run: dart pub global activate peanut
+
     - name: Create peanut
       run: make peanut
 
