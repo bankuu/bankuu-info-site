@@ -38,8 +38,8 @@ jobs:
         git config --global user.email ban.kuu@yahoo.com
         git config --global user.name BANKUU
         make peanut
-        git remote add origin https://${{secrets.GH_DEPLOY}}@github.com/bankuu/bankuu-info-site.git
-        git checkout -b publish
-        git push origin publish -f
+#        git remote add origin https://${{secrets.GH_DEPLOY}}@github.com/bankuu/bankuu-info-site.git
+#        git checkout -b publish
+#        git push origin publish -f
 
 
