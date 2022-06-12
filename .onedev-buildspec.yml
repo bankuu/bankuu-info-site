@@ -1,0 +1,22 @@
+version: 16
+jobs:
+- name: sync-to-github
+  jobExecutor: job-executors
+  steps:
+  - !PushRepository
+    name: github
+    remoteUrl: https://github.com/bankuu/bankuu-info-site.git
+    userName: bankuu
+    passwordSecret: github-app-password
+    withLfs: true
+    force: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !BranchUpdateTrigger
+    branches: master
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  cpuRequirement: 250
+  memoryRequirement: 256
+  timeout: 3600
